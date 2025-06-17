@@ -9,9 +9,9 @@ import SwiftUI
 
 struct FeedView: View {
     var body: some View {
-        ScrollView{
-            LazyVStack{
-                ForEach(0 ..< 10) { post in
+        ScrollView {
+            LazyVStack(spacing: 0) {
+                ForEach(0..<10) { post in
                     Rectangle()
                         .fill(.pink)
                         .containerRelativeFrame([.horizontal, .vertical])
@@ -24,6 +24,7 @@ struct FeedView: View {
             .scrollTargetLayout()
         }
         .scrollTargetBehavior(.paging)
+        .ignoresSafeArea()
     }
 }
 
