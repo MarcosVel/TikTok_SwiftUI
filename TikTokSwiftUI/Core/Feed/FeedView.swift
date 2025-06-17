@@ -21,7 +21,9 @@ struct FeedView: View {
                         }
                 }
             }
+            .scrollTargetLayout()
         }
+        .scrollTargetBehavior(.paging)
     }
 }
 
