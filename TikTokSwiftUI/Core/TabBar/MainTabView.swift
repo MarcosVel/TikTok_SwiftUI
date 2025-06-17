@@ -65,6 +65,7 @@ struct MainTabView: View {
                 .onAppear { selectedTab = 3 }
                 .tag(3)
         }
+        .tint(.black)
     }
 }
 
