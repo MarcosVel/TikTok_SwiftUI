@@ -24,35 +24,11 @@ struct ProfileHeaderView: View {
             }
 
             HStack(spacing: 16) {
-                VStack {
-                    Text("5")
-                        .font(.subheadline)
-                        .fontWeight(.bold)
-                    Text("Following")
-                        .font(.caption)
-                        .foregroundStyle(.gray)
-                }
-                .frame(width: 80, alignment: .center)
+                UserStatView(value: 5, title: "Following")
 
-                VStack {
-                    Text("5")
-                        .font(.subheadline)
-                        .fontWeight(.bold)
-                    Text("Followers")
-                        .font(.caption)
-                        .foregroundStyle(.gray)
-                }
-                .frame(width: 80, alignment: .center)
+                UserStatView(value: 10, title: "Followers")
 
-                VStack {
-                    Text("5")
-                        .font(.subheadline)
-                        .fontWeight(.bold)
-                    Text("Likes")
-                        .font(.caption)
-                        .foregroundStyle(.gray)
-                }
-                .frame(width: 80, alignment: .center)
+                UserStatView(value: 80, title: "Likes")
             }
         }
     }
@@ -60,4 +36,21 @@ struct ProfileHeaderView: View {
 
 #Preview {
     ProfileHeaderView()
+}
+
+struct UserStatView: View {
+    let value: Int
+    let title: String
+
+    var body: some View {
+        VStack {
+            Text("\(value)")
+                .font(.subheadline)
+                .fontWeight(.bold)
+            Text("\(title)")
+                .font(.caption)
+                .foregroundStyle(.gray)
+        }
+        .frame(width: 80, alignment: .center)
+    }
 }
