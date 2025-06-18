@@ -16,6 +16,7 @@ struct ExploreView: View {
                         .padding(.horizontal)
                 }
             }
+            .padding(.bottom, 24)
         }
     }
 }
