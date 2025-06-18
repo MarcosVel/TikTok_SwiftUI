@@ -43,10 +43,11 @@ struct MainTabView: View {
                 }
                 .onAppear { selectedTab = 4 }
                 .tag(4)
-            Text("Feed")
+
+            NotificationsView()
                 .tabItem {
                     VStack {
-                        Image(systemName: "text.bubble")
+                        Image(systemName: "heart")
                             .environment(
                                 \.symbolVariants, selectedTab == 2 ? .fill : .none)
                         Text("Inbox")
