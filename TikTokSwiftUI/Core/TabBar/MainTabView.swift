@@ -55,7 +55,8 @@ struct MainTabView: View {
                 }
                 .onAppear { selectedTab = 2 }
                 .tag(2)
-            Text("Feed")
+            
+            CurrentUserProfileView()
                 .tabItem {
                     VStack {
                         Image(systemName: "person")
