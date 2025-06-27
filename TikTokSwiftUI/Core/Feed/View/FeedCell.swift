@@ -15,7 +15,7 @@ struct FeedCell: View {
     
     var body: some View {
         ZStack {
-            VideoPlayer(player: AVPlayer(url: URL(string: post.videoUrl) ?? fallbackUrl))
+            CustomVideoPlayer(player: AVPlayer(url: URL(string: post.videoUrl) ?? fallbackUrl))
                 .containerRelativeFrame([.horizontal, .vertical])
 
             VStack {
