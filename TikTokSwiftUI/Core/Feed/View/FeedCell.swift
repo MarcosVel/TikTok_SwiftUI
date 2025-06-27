@@ -6,19 +6,17 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct FeedCell: View {
-    let post: Int
+    let post: Post
 
+    let fallbackUrl = URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!
+    
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(.pink)
+            VideoPlayer(player: AVPlayer(url: URL(string: post.videoUrl) ?? fallbackUrl))
                 .containerRelativeFrame([.horizontal, .vertical])
-                .overlay {
-                    Text("Post \(post)")
-                        .foregroundStyle(.white)
-                }
 
             VStack {
                 Spacer()
@@ -103,5 +101,5 @@ struct FeedCell: View {
 }
 
 #Preview {
-    FeedCell(post: 2)
+    FeedCell(post: Post(id: UUID().uuidString, videoUrl: ""))
 }
