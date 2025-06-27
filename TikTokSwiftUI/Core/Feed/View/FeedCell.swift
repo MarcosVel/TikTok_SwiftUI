@@ -10,12 +10,18 @@ import AVKit
 
 struct FeedCell: View {
     let post: Post
+    var player: AVPlayer
+    
+    init(post: Post) {
+        self.post = post
+        self.player = AVPlayer(url: URL(string: post.videoUrl) ?? fallbackUrl)
+    }
 
     let fallbackUrl = URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!
     
     var body: some View {
         ZStack {
-            CustomVideoPlayer(player: AVPlayer(url: URL(string: post.videoUrl) ?? fallbackUrl))
+            CustomVideoPlayer(player: player)
                 .containerRelativeFrame([.horizontal, .vertical])
 
             VStack {
@@ -96,6 +102,10 @@ struct FeedCell: View {
                 .padding(.bottom, 88)
             }
             .padding()
+        }
+        .onAppear {
+            print("DEBUG: Post url \(post.videoUrl)")
+//            player.play()
         }
     }
 }
