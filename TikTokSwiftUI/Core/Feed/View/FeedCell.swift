@@ -5,20 +5,23 @@
 //  Created by Marcos Roberto Lemos Veloso on 17/06/25.
 //
 
-import SwiftUI
 import AVKit
+import SwiftUI
 
 struct FeedCell: View {
     let post: Post
     var player: AVPlayer
-    
+
     init(post: Post, player: AVPlayer) {
         self.post = post
         self.player = player
     }
 
-    let fallbackUrl = URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!
-    
+    let fallbackUrl = URL(
+        string:
+            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    )!
+
     var body: some View {
         ZStack {
             CustomVideoPlayer(player: player)
@@ -62,7 +65,7 @@ struct FeedCell: View {
                         Button {
 
                         } label: {
-                            VStack{
+                            VStack {
                                 Image(systemName: "ellipses.bubble.fill")
                                     .resizable()
                                     .frame(width: 28, height: 28)
@@ -103,13 +106,22 @@ struct FeedCell: View {
             }
             .padding()
         }
-        .onAppear {
-            print("DEBUG: Post id \(post.id)")
-//            player.play()
+        .onTapGesture {
+            switch player.timeControlStatus {
+            case .paused:
+                player.play()
+            case .waitingToPlayAtSpecifiedRate:
+                break
+            case .playing:
+                player.pause()
+            @unknown default:
+                break
+            }
         }
     }
 }
 
 #Preview {
-    FeedCell(post: Post(id: UUID().uuidString, videoUrl: ""), player: AVPlayer())
+    FeedCell(
+        post: Post(id: UUID().uuidString, videoUrl: ""), player: AVPlayer())
 }
