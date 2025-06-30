@@ -12,9 +12,9 @@ struct FeedCell: View {
     let post: Post
     var player: AVPlayer
     
-    init(post: Post) {
+    init(post: Post, player: AVPlayer) {
         self.post = post
-        self.player = AVPlayer(url: URL(string: post.videoUrl) ?? fallbackUrl)
+        self.player = player
     }
 
     let fallbackUrl = URL(string: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")!
@@ -104,12 +104,12 @@ struct FeedCell: View {
             .padding()
         }
         .onAppear {
-            print("DEBUG: Post url \(post.videoUrl)")
+            print("DEBUG: Post id \(post.id)")
 //            player.play()
         }
     }
 }
 
 #Preview {
-    FeedCell(post: Post(id: UUID().uuidString, videoUrl: ""))
+    FeedCell(post: Post(id: UUID().uuidString, videoUrl: ""), player: AVPlayer())
 }
